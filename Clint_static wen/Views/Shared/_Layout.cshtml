@@ -1,7 +1,627 @@
-﻿
-    <div class="container">
-        <main role="main" class="pb-3">
+﻿<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Sai Cabs Car Rental</title>
+
+    @RenderSection("Styles", required: false)
+    
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --primary-color: #1a73e8;
+            --secondary-color: #0d47a1;
+            --accent-color: #00c853;
+            --dark-color: #121212;
+            --light-color: #f8f9fa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: var(--light-color);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background: rgba(18, 18, 18, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--primary-color);
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--primary-color) !important;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .navbar-brand span {
+            color: var(--accent-color);
+        }
+
+        .nav-link {
+            color: var(--light-color) !important;
+            font-weight: 500;
+            padding: 0.5rem 1rem !important;
+            margin: 0 0.25rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color) !important;
+            transform: translateY(-2px);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after {
+            width: 80%;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+                        url('/images/hero-bg.jpg') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(26, 115, 232, 0.1) 0%, transparent 50%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @@keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .hero-content {
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.5rem;
+            animation: slideInLeft 1s ease;
+        }
+
+        @@keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* 3D Card Effects */
+        .card-3d {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .card-3d:hover {
+            transform: translateY(-10px) rotateX(5deg);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4),
+                        0 0 20px rgba(26, 115, 232, 0.3);
+            border-color: var(--primary-color);
+        }
+
+        /* Animated Buttons */
+        .btn-primary-3d {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            border: none;
+            padding: 12px 30px;
+            border-radius: 10px;
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+        }
+
+        .btn-primary-3d:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 20px rgba(26, 115, 232, 0.4);
+        }
+
+        .btn-primary-3d::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .btn-primary-3d:hover::before {
+            left: 100%;
+        }
+
+        /* Floating Animation */
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @@keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Glow Effects */
+        .glow {
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @@keyframes glow {
+            from {
+                box-shadow: 0 0 10px var(--primary-color),
+                            0 0 20px var(--primary-color),
+                            0 0 30px var(--primary-color);
+            }
+            to {
+                box-shadow: 0 0 20px var(--primary-color),
+                            0 0 30px var(--primary-color),
+                            0 0 40px var(--primary-color);
+            }
+        }
+
+        /* Section Spacing */
+        section {
+            padding: 80px 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            border-radius: 2px;
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 60px 0 20px;
+            margin-top: 100px;
+            border-top: 3px solid var(--primary-color);
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            margin: 0 5px;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background: var(--primary-color);
+            transform: translateY(-5px);
+        }
+
+        /* Responsive */
+        @@media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .navbar-brand {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--dark-color);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(45deg, var(--accent-color), var(--primary-color));
+        }
+
+        /* Particle Background */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            background: var(--primary-color);
+            border-radius: 50%;
+            animation: floatParticle 20s infinite linear;
+        }
+
+        @@keyframes floatParticle {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                <i class="fas fa-car me-2"></i>SAI <span>CABS</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="About">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Fleet">Fleet</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Pricing">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Owner">Owner</a>
+                    </li>
+                    <li class="nav-item ms-2">
+                        <a class="btn btn-primary-3d" asp-area="" asp-controller="Home" asp-action="BookNow">
+                            <i class="fas fa-calendar-check me-2"></i>Book Now
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container-fluid p-0">
+        <main role="main">
             @RenderBody()
         </main>
     </div>
 
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h3 class="mb-4">SAI CABS</h3>
+                    <p>Your trusted travel partner for comfortable and reliable transportation services across Nepal and India.</p>
+                    <div class="social-icons mt-4">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5 class="mb-4">Quick Links</h5>
+                    <div class="footer-links">
+                        <a asp-area="" asp-controller="Home" asp-action="Index">Home</a><br>
+                        <a asp-area="" asp-controller="Home" asp-action="About">About Us</a><br>
+                        <a asp-area="" asp-controller="Home" asp-action="Services">Services</a><br>
+                        <a asp-area="" asp-controller="Home" asp-action="Fleet">Our Fleet</a><br>
+                        <a asp-area="" asp-controller="Home" asp-action="Pricing">Pricing</a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5 class="mb-4">Contact Info</h5>
+                    <p><i class="fas fa-map-marker-alt me-2"></i>123 Main Street, Anytown, CA 12345</p>
+                    <p><i class="fas fa-phone me-2"></i>(123) 456-7890</p>
+                    <p><i class="fas fa-envelope me-2"></i>info@saicabs.com</p>
+                    <p><i class="fas fa-clock me-2"></i>24/7 Available</p>
+                </div>
+                <div class="col-lg-3 mb-4">
+                    <h5 class="mb-4">Emergency Contact</h5>
+                    <div class="emergency-contact">
+                        <a href="tel:09405973633" class="btn btn-danger btn-lg mb-2 w-100">
+                            <i class="fas fa-phone-alt me-2"></i>Emergency: 094059 73633
+                        </a>
+                        <a href="tel:2417" class="btn btn-warning btn-lg w-100">
+                            <i class="fas fa-ambulance me-2"></i>Call: 2417
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>&copy; @DateTime.Now.Year Sai Cabs Car Rental. All Rights Reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p>Powered by Navneet Solutions</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    @RenderSection("Scripts", required: false)
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    
+    <!-- Three.js for 3D Effects -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.padding = '0.5rem 0';
+                navbar.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
+            } else {
+                navbar.style.padding = '1rem 0';
+                navbar.style.boxShadow = 'none';
+            }
+        });
+
+        // Create particle background
+        function createParticles() {
+            const container = document.createElement('div');
+            container.className = 'particles';
+            document.body.appendChild(container);
+
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                const size = Math.random() * 5 + 2;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.opacity = Math.random() * 0.5 + 0.2;
+                particle.style.background = Math.random() > 0.5 ? 'var(--primary-color)' : 'var(--accent-color)';
+                
+                container.appendChild(particle);
+            }
+        }
+
+        // Create simple 3D car model
+        function create3DCar() {
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ alpha: true });
+            
+            renderer.setSize(300, 200);
+            renderer.setClearColor(0x000000, 0);
+            
+            const carContainer = document.getElementById('3d-car');
+            if (carContainer) {
+                carContainer.appendChild(renderer.domElement);
+                
+                // Create car body
+                const geometry = new THREE.BoxGeometry(2, 1, 4);
+                const material = new THREE.MeshBasicMaterial({ color: 0x1a73e8 });
+                const car = new THREE.Mesh(geometry, material);
+                scene.add(car);
+                
+                camera.position.z = 5;
+                
+                function animate() {
+                    requestAnimationFrame(animate);
+                    car.rotation.y += 0.01;
+                    renderer.render(scene, camera);
+                }
+                animate();
+            }
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            create3DCar();
+            
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+            
+            // Add hover effects to cards
+            document.querySelectorAll('.card-3d').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px) rotateX(5deg)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) rotateX(0)';
+                });
+            });
+        });
+
+        // Booking form validation
+        function validateBookingForm() {
+            const form = document.getElementById('bookingForm');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    const name = document.getElementById('CustomerName').value;
+                    const phone = document.getElementById('Phone').value;
+                    const date = document.getElementById('PickupDate').value;
+                    
+                    if (!name || !phone || !date) {
+                        e.preventDefault();
+                        alert('Please fill all required fields');
+                        return false;
+                    }
+                    
+                    if (phone.length < 10) {
+                        e.preventDefault();
+                        alert('Please enter a valid phone number');
+                        return false;
+                    }
+                    
+                    return true;
+                });
+            }
+        }
+
+        // Initialize form validation
+        validateBookingForm();
+    </script>
+    
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+
+
+
+
+ @*    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+ *@

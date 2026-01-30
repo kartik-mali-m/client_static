@@ -1,4 +1,184 @@
-﻿@{
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@{
+    ViewData["Title"] = "Home - Sai Cabs Car Rental";
+}
+
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center min-vh-100">
+            <div class="col-lg-6 hero-content">
+                <h1 class="hero-title animate__animated animate__fadeInLeft">
+                    Premium Cab Services
+                </h1>
+                <p class="lead mb-4 animate__animated animate__fadeInLeft animate__delay-1s">
+                    Experience luxury travel with our premium fleet of vehicles.
+                    24/7 service, professional drivers, and competitive rates.
+                </p>
+                <div class="d-flex gap-3 animate__animated animate__fadeInUp animate__delay-2s">
+                    <a asp-action="BookNow" class="btn btn-primary-3d btn-lg">
+                        <i class="fas fa-car me-2"></i>Book Your Ride
+                    </a>
+                    <a href="#services" class="btn btn-outline-light btn-lg">
+                        <i class="fas fa-info-circle me-2"></i>Learn More
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <!-- 3D Car Model -->
+                <div id="3d-car" class="float-animation"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Why Choose Us -->
+<section id="why-us" class="py-5">
+    <div class="container">
+        <h2 class="section-title" data-aos="fade-up">Why Choose Sai Cabs?</h2>
+        <div class="row g-4">
+            <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
+                <div class="card-3d text-center p-4 h-100">
+                    <div class="icon-wrapper mb-3">
+                        <i class="fas fa-shield-alt fa-3x text-primary"></i>
+                    </div>
+                    <h4>Safety First</h4>
+                    <p>All vehicles undergo regular safety checks and maintenance</p>
+                </div>
+            </div>
+            <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
+                <div class="card-3d text-center p-4 h-100">
+                    <div class="icon-wrapper mb-3">
+                        <i class="fas fa-clock fa-3x text-primary"></i>
+                    </div>
+                    <h4>24/7 Service</h4>
+                    <p>Round-the-clock availability for all your travel needs</p>
+                </div>
+            </div>
+            <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
+                <div class="card-3d text-center p-4 h-100">
+                    <div class="icon-wrapper mb-3">
+                        <i class="fas fa-car fa-3x text-primary"></i>
+                    </div>
+                    <h4>Modern Fleet</h4>
+                    <p>Well-maintained vehicles with latest amenities</p>
+                </div>
+            </div>
+            <div class="col-md-3" data-aos="fade-up" data-aos-delay="400">
+                <div class="card-3d text-center p-4 h-100">
+                    <div class="icon-wrapper mb-3">
+                        <i class="fas fa-rupee-sign fa-3x text-primary"></i>
+                    </div>
+                    <h4>Best Prices</h4>
+                    <p>Competitive rates without compromising on quality</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services -->
+<section id="services" class="py-5 bg-dark">
+    <div class="container">
+        <h2 class="section-title" data-aos="fade-up">Our Services</h2>
+        <div class="row g-4">
+            @foreach (var service in ViewBag.Services)
+            {
+                <div class="col-md-3" data-aos="flip-left">
+                    <div class="card-3d text-center p-4 h-100">
+                        <div class="icon-wrapper mb-3">
+                            <i class="@service.IconClass fa-3x text-primary"></i>
+                        </div>
+                        <h4>@service.Title</h4>
+                        <p>@service.Description</p>
+                        <a href="#" class="btn btn-sm btn-outline-primary mt-2">Learn More</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<!-- Featured Vehicles -->
+<section class="py-5">
+    <div class="container">
+        <h2 class="section-title" data-aos="fade-up">Featured Vehicles</h2>
+        <div class="row g-4">
+            @foreach (var vehicle in ViewBag.Vehicles)
+            {
+                <div class="col-md-3" data-aos="zoom-in">
+                    <div class="card-3d">
+                        <div class="position-relative overflow-hidden rounded-top">
+                            <img src="@vehicle.ImageUrl" class="card-img-top" alt="@vehicle.Name">
+                            <div class="position-absolute top-0 end-0 bg-primary text-white p-2">
+                                <i class="fas fa-user-friends"></i> @vehicle.Seats Seats
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">@vehicle.Name</h5>
+                            <p class="card-text">@vehicle.Description</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="h5 text-primary">₹@vehicle.PricePerHour<small>/hr</small></span>
+                                <a asp-action="BookNow" class="btn btn-sm btn-primary">Book Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<!-- Emergency Banner -->
+<section class="py-5 bg-danger">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <h3 class="text-white mb-0">
+                    <i class="fas fa-ambulance me-2"></i>24/7 Emergency Service Available
+                </h3>
+                <p class="text-white mb-0">Immediate assistance for urgent travel needs</p>
+            </div>
+            <div class="col-md-4 text-end">
+                <a href="tel:09405973633" class="btn btn-light btn-lg glow">
+                    <i class="fas fa-phone-alt me-2"></i>Call Now: 094059 73633
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@* @{
     ViewData["Title"] = "Home Page";
 }
 
@@ -244,3 +424,4 @@
 </body>
 </html>
 
+ *@
