@@ -363,8 +363,66 @@
                 opacity: 0;
             }
         }
+        /* ===== Floating Buttons Like Screenshot ===== */
+
+        .floating-action {
+            position: fixed;
+            bottom: 25px;
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 28px;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.35);
+            z-index: 99999;
+        }
+
+        /* WhatsApp Left */
+        .floating-whatsapp {
+            left: 20px;
+            background: #25d366;
+            font-size: 32px;
+        }
+
+        /* Call Right */
+        .floating-call {
+            right: 20px;
+            background: #6c757d;
+        }
+
+        /* Hover effect */
+        .floating-action:hover {
+            transform: scale(1.1);
+            color: #fff;
+        }
+
+        /* Desktop hide */
+        @@media (min-width: 768px) {
+            .floating-action
+
+        {
+            display: none !important;
+        }
+
+        }
     </style>
 </head>
+<!-- WhatsApp Button -->
+<a href="https://wa.me/919657323988"
+   target="_blank"
+   class="floating-action floating-whatsapp">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- Call Button -->
+<a href="tel:917498184998"
+   class="floating-action floating-call">
+    <i class="fas fa-phone-alt"></i>
+</a>
+
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
@@ -424,10 +482,13 @@
                     <p>Your trusted travel partner for comfortable and reliable transportation services across Nepal and India.</p>
                     <div class="social-icons mt-4">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+@*                         <a href="#"><i class="fab fa-twitter"></i></a>
+ *@                        <a href="https://www.instagram.com/javeriya_tours?igsh=MTU2MGFteDFjbzR5dA=="><i class="fab fa-instagram"></i></a>
+@*                         <a href="#"><i class="fab fa-linkedin-in"></i></a>
+ *@                       
+         <a href="https://wa.me/919657323988?text=Hello%20Sir" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-6 mb-4">
@@ -443,7 +504,7 @@
                 <div class="col-lg-3 col-md-6 mb-4">
                     <h5 class="mb-4">Contact Info</h5>
                     <p><i class="fas fa-map-marker-alt me-2"></i>Chirke Colony Wadgaon Shinde Raod Lahegaon</p>
-                    <p><i class="fas fa-phone me-2"></i>9657323988</p>
+                    <p><i class="fas fa-phone me-2"></i>+919657323988</p>
                     <p><i class="fas fa-envelope me-2"></i>info@javeriyatours1867@gmail.com</p>
                     <p><i class="fas fa-clock me-2"></i>24/7 Available</p>
                 </div>
@@ -451,10 +512,10 @@
                     <h5 class="mb-4">Emergency Contact</h5>
                     <div class="emergency-contact">
                         <a href="tel:09405973633" class="btn btn-danger btn-lg mb-2 w-100">
-                            <i class="fas fa-phone-alt me-2"></i>Emergency: 094059 73633
+                            <i class="fas fa-phone-alt me-2"></i>Emergency: 09657323988
                         </a>
                         <a href="tel:2417" class="btn btn-warning btn-lg w-100">
-                            <i class="fas fa-ambulance me-2"></i>Call:  094059 73633
+                            <i class="fas fa-ambulance me-2"></i>Call:  09657323988
                         </a>
                     </div>
                 </div>
