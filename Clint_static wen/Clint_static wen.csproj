@@ -8,10 +8,4 @@
 	  <AssemblyName>Clint_static_wen</AssemblyName>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\images\fleet\" />
-    <Folder Include="wwwroot\images\services\" />
-    <Folder Include="wwwroot\images\vehicles\" />
-  </ItemGroup>
-
 </Project>
