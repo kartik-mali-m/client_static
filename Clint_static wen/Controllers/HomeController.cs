@@ -140,5 +140,9 @@ namespace Clint_static_wen.Controllers
         {
             return View();
         }
+        public IActionResult Book()
+        {
+            return View();
+        }
     }
 }
