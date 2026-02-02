@@ -256,6 +256,14 @@
                                 <a asp-action="Book" class="btn btn-sm btn-primary">Book Now</a>
                             </div>
                         </div>
+                        <div class="card-body">
+                            <h5 class="card-title">@vehicle.Name</h5>
+                            <p class="card-text">@vehicle.Description</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="h5 text-primary">₹@vehicle.PricePerHour<small>/hr</small></span>
+                                <a asp-action="Book" class="btn btn-sm btn-primary">Book Now</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             }
