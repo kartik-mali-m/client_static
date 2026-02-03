@@ -48,6 +48,7 @@
             color: var(--light-color);
             min-height: 100vh;
             overflow-x: hidden;
+            padding-top: 110px; /* top bar + navbar */
         }
 
         /* ===================================================== */
@@ -487,7 +488,7 @@
         /* ============================= */
 
         .custom-navbar {
-            height: 100px;
+
             background: #111;
             border-bottom: 2px solid #1a73e8;
             box-shadow: 0 2px 12px rgba(0,0,0,0.6);
@@ -496,7 +497,7 @@
 
             /* keep content centered vertically */
             .custom-navbar .container {
-                height: 100px;
+          
                 display: flex;
                 align-items: center;
             }
@@ -509,19 +510,7 @@
                 margin-right: 24px;
             }
 
-        /* LOGO – STAYS INSIDE NAVBAR */
-        .navbar-logo {
-            height: 46px; /* ✅ perfect for 64px navbar */
-            width: auto;
-            object-fit: contain;
-            /* premium look */
-            filter: drop-shadow(0 3px 6px rgba(0,0,0,0.7));
-            transition: transform 0.25s ease;
-        }
-
-            .navbar-logo:hover {
-                transform: scale(1.06);
-            }
+      
 
         /* NAV LINKS */
         .custom-navbar .nav-link {
@@ -553,19 +542,16 @@
         /* MOBILE ADJUSTMENT */
         /* ================= */
         @@media (max-width: 768px) {
-            .custom-navbar
-
-        {
-            height: 56px;
+            .custom-navbar {
+                padding: 0 !important;
+            }
         }
 
         .custom-navbar .container {
             height: 56px;
         }
 
-        .navbar-logo {
-            height: 38px;
-        }
+     
 
         body {
             padding-top: 56px;
@@ -1130,22 +1116,7 @@
         }
 
 
-        a > img {
-            height: 80px;
-            width: 90px; /* same as height for round logo */
-            border-radius: 50%;
-            object-fit: cover;
-            /* optional premium look */
-            background: radial-gradient(circle, #0b1a33, #020617);
-            padding: 5px;
-            border: 2px solid rgba(212, 175, 55, 0.7);
-            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.6));
-            transition: transform 0.3s ease;
-        }
-
-            a > img:hover {
-                transform: scale(1.08);
-            }
+       
 
         .navbar .nav-link i {
             font-size: 1.1rem;
@@ -1196,18 +1167,267 @@
 
         .navbar-logo {
             height: 48px; /* fits inside navbar */
-            width: auto;
-            max-width: 140px;
+            width: 180px;
+            max-width: 180px;
             object-fit: contain;
             position: static; /* IMPORTANT */
             filter: drop-shadow(0 3px 6px rgba(0,0,0,0.6));
         }
         @@media (max-width: 768px) {
-            .navbar-logo
-
-        {
+            .navbar-logo{
             height: 36px;
             max-width: 120px;
+        }
+
+        }
+        /* ===== FINAL NAVBAR DESIGN (CLEAN & FIXED) ===== */
+
+        .custom-navbar {
+            height: 72px;
+            background: linear-gradient(90deg, #0b1220, #020617);
+            border-bottom: 2px solid #1a73e8;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.6);
+        }
+
+        /* push content below navbar */
+        body {
+            padding-top: 72px;
+        }
+
+        /* BRAND */
+        .navbar-brand {
+            height: 72px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* LOGO – PERFECT FIT */
+        .navbar-logo {
+            width: 150px;
+            height: 60px;
+            object-fit: contain;
+            display: block;
+            /* kill all old conflicts */
+            position: static !important;
+            padding: 0 !important;
+            border: none !important;
+            border-radius: 0 !important;
+            background: transparent !important;
+            box-shadow: none !important;
+        }
+
+        /* NAV LINKS */
+        .custom-navbar .nav-link {
+            color: #ffffff !important;
+            font-weight: 500;
+            margin: 0 14px;
+            padding: 0;
+            transition: color 0.3s ease;
+        }
+
+            .custom-navbar .nav-link:hover,
+            .custom-navbar .nav-link.active {
+                color: #1a73e8 !important;
+            }
+
+        /* BUTTON */
+        .custom-navbar .btn {
+            border-radius: 8px;
+            font-weight: 600;
+        }
+
+        /* MOBILE */
+        @@media (max-width: 768px) {
+            .custom-navbar
+
+        {
+            height: 60px;
+        }
+
+        body {
+            padding-top: 60px;
+        }
+
+        .navbar-brand {
+            height: 60px;
+        }
+
+
+        .navbar-collapse {
+            background: #020617;
+            padding: 16px;
+            border-radius: 12px;
+            margin-top: 10px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.8);
+        }
+
+        .navbar-nav .nav-link {
+            padding: 10px 12px;
+            margin: 4px 0;
+            border-radius: 6px;
+        }
+
+            .navbar-nav .nav-link:hover {
+                background: rgba(26,115,232,0.15);
+            }
+
+        }
+        /* =============================== */
+        /* TOP CONTACT BAR */
+        /* =============================== */
+        .top-contact-bar {
+            background: linear-gradient(90deg, #020617, #0b1220);
+            border-bottom: 1px solid rgba(26,115,232,0.4);
+            color: #fff;
+            font-size: 14px;
+            padding: 6px 0;
+        }
+
+            .top-contact-bar a {
+                color: #e5e7eb;
+                text-decoration: none;
+                margin-right: 10px;
+                font-weight: 500;
+            }
+
+                .top-contact-bar a:hover {
+                    color: #1a73e8;
+                    text-decoration: underline;
+                }
+
+            .top-contact-bar i {
+                margin-right: 4px;
+            }
+
+            .top-contact-bar .divider {
+                margin: 0 8px;
+                opacity: 0.7;
+            }
+
+        /* Mobile fix */
+        @@media (max-width: 768px) {
+            .top-contact-bar .container
+
+        {
+            flex-direction: column;
+            text-align: center;
+            gap: 4px;
+        }
+
+        }
+        /* ===== BODY OFFSET (TOP BAR + NAVBAR) ===== */
+        body {
+            padding-top: 112px; /* 40px top bar + 72px navbar */
+        }
+
+        /* ===== TOP CONTACT BAR ===== */
+        .top-contact-bar {
+            height: 40px;
+            background: linear-gradient(90deg, #3a0f00, #ff9f1c);
+            color: #fff;
+            font-size: 14px;
+            z-index: 1051;
+        }
+
+            .top-contact-bar a {
+                color: #fff;
+                text-decoration: none;
+                font-weight: 500;
+            }
+
+            .top-contact-bar .divider {
+                margin: 0 8px;
+                opacity: 0.6;
+            }
+
+        /* ===== MAIN NAVBAR ===== */
+        .custom-navbar {
+            top: 40px; /* sits below top bar */
+            height: 72px;
+            background: linear-gradient(90deg, #0b1220, #020617);
+            border-bottom: 2px solid #1a73e8;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.6);
+        }
+
+        /* BRAND */
+        .navbar-brand {
+            height: 72px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* LOGO */
+        .navbar-logo {
+            width: 150px;
+            height: 60px;
+            object-fit: contain;
+        }
+
+        /* MOBILE FIX */
+        @@media (max-width: 768px) {
+            body
+
+        {
+            padding-top: 96px;
+        }
+
+        .top-contact-bar {
+            font-size: 13px;
+            text-align: center;
+        }
+
+        .custom-navbar {
+            top: 40px;
+            height: 60px;
+        }
+
+        .navbar-brand {
+            height: 60px;
+        }
+
+        .navbar-logo {
+            height: 40px;
+            width: 120px;
+        }
+
+        .navbar-collapse {
+            background: #020617;
+            padding: 16px;
+            border-radius: 12px;
+            margin-top: 10px;
+        }
+
+        }
+        /* MAIN NAVBAR – MATCH HERO */
+        .custom-navbar {
+            background: linear-gradient(90deg, #020617, #0f172a);
+            border-bottom: 2px solid #1a73e8;
+            box-shadow: 0 8px 22px rgba(0,0,0,0.7);
+        }
+
+            /* NAV LINKS */
+            .custom-navbar .nav-link {
+                color: #e5e7eb !important;
+            }
+
+                .custom-navbar .nav-link:hover,
+                .custom-navbar .nav-link.active {
+                    color: #1a73e8 !important;
+                }
+
+            /* BOOK NOW BUTTON */
+            .custom-navbar .btn-primary {
+                background: linear-gradient(135deg, #1a73e8, #0d47a1);
+                border: none;
+            }
+
+        /* MOBILE MENU BG */
+        @@media (max-width: 768px) {
+            .navbar-collapse
+
+        {
+            background: linear-gradient(180deg, #020617, #0b1220);
+            border: 1px solid rgba(26,115,232,0.3);
         }
 
         }
@@ -1227,71 +1447,91 @@
 </a>
 
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg fixed-top custom-navbar">
-        <div class="container">
 
-            <a class="navbar-brand" asp-controller="Home" asp-action="Index">
-                <img src="~/images/logo 9.png" alt="Javeriya Cabs" class="navbar-logo">
-            </a>
+    
 
+        <!-- ================= TOP CONTACT BAR ================= -->
+        <div class="top-contact-bar fixed-top">
+            <div class="container d-flex justify-content-between align-items-center">
+                <div>
+                    <a href="tel:+919657323988">
+                        <i class="bi bi-telephone-fill"></i> +91 96573 23988
+                    </a>
+                    <span class="divider">|</span>
+                    <a href="https://wa.me/919657323988" target="_blank">
+                        <i class="bi bi-whatsapp"></i> WhatsApp
+                    </a>
+                </div>
 
-            <button class="navbar-toggler" type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto align-items-lg-center">
-
-                    <li class="nav-item">
-                        <a class="nav-link" asp-action="Index">
-                            <i class="bi bi-house-door-fill me-1"></i>
-                            Home
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" asp-action="About">
-                            <i class="bi bi-info-circle-fill me-1"></i>
-                            About
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" asp-action="Services">
-                            <i class="bi bi-gear-fill me-1"></i>
-                            Services
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" asp-action="Fleet">
-                            <i class="bi bi-car-front-fill me-1"></i>
-                            Fleet
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" asp-action="Contact">
-                            <i class="bi bi-telephone-fill me-1"></i>
-                            Contact
-                        </a>
-                    </li>
-
-                    <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
-                        <a class="btn btn-primary" asp-action="Book">
-                            <i class="bi bi-calendar-check-fill me-1"></i>
-                            Book Now
-                        </a>
-                    </li>
-
-                </ul>
+                <div class="d-none d-md-block">
+                    <a href="mailto:info@javeriyatours1867@gmail.com">
+                        <i class="bi bi-envelope-fill"></i> info@javeriyatours1867@gmail.com
+                    </a>
+                </div>
             </div>
-
         </div>
-    </nav>
+
+        <!-- ================= MAIN NAVBAR ================= -->
+        <nav class="navbar navbar-expand-lg fixed-top custom-navbar">
+            <div class="container">
+
+                <!-- LOGO -->
+                <a class="navbar-brand" asp-controller="Home" asp-action="Index">
+                    <img src="~/images/logo 7.png" alt="Javeriya Cabs" class="navbar-logo">
+                </a>
+
+                <!-- TOGGLER -->
+                <button class="navbar-toggler" type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- MENU -->
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto align-items-lg-center">
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-action="Index">
+                                <i class="bi bi-house-door-fill me-1"></i> Home
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-action="About">
+                                <i class="bi bi-info-circle-fill me-1"></i> About
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-action="Services">
+                                <i class="bi bi-gear-fill me-1"></i> Services
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-action="Fleet">
+                                <i class="bi bi-car-front-fill me-1"></i> Fleet
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-action="Contact">
+                                <i class="bi bi-telephone-fill me-1"></i> Contact
+                            </a>
+                        </li>
+
+                        <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+                            <a class="btn btn-primary px-4 py-2" asp-action="Book">
+                                <i class="bi bi-calendar-check-fill me-1"></i> Book Now
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
 
 
 
@@ -1395,14 +1635,17 @@
         });
 
         // Navbar scroll effect
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 100) {
-                navbar.style.padding = '0.5rem 0';
-                navbar.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
-            } else {
-                navbar.style.padding = '1rem 0';
-                navbar.style.boxShadow = 'none';
+                // Navbar scroll effect (DESKTOP ONLY)
+        window.addEventListener('scroll', function () {
+            if (window.innerWidth > 768) {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 100) {
+                    navbar.style.padding = '0.5rem 0';
+                    navbar.style.boxShadow = '0 5px 20px rgba(0,0,0,0.4)';
+                } else {
+                    navbar.style.padding = '0';
+                    navbar.style.boxShadow = 'none';
+                }
             }
         });
 

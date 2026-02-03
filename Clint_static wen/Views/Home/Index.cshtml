@@ -115,10 +115,47 @@
 
     /* MOBILE REFINEMENT */
     @@media (max-width: 768px) {
-        .hero-title
+    body {
+        padding-top: 100px; /* 40px top bar + 60px navbar */
+    }
+}
+
+    <style >
+    /* ================= HERO BASE ================= */
+    .hero-section {
+        background: radial-gradient(circle at top left, rgba(26,115,232,0.25), transparent 60%), linear-gradient(135deg, #020617, #0f172a);
+        padding: 80px 0;
+    }
+
+    /* HERO TEXT */
+    .hero-title {
+        letter-spacing: 1px;
+        line-height: 1.2;
+    }
+
+    .hero-content p {
+        color: #cbd5f5;
+        max-width: 520px;
+    }
+
+    /* ================= MOBILE FIX ================= */
+    @@media (max-width: 768px) {
+        .hero-section
 
     {
-        font-size: 2.4rem;
+        padding: 50px 0 60px;
+    }
+
+    .hero-section .container {
+        max-width: 540px; /* 🔥 reduces hero width */
+        padding-left: 16px;
+        padding-right: 16px;
+        margin: 0 auto;
+    }
+
+    .hero-title {
+        font-size: 2.2rem;
+        text-align: center;
     }
 
     .hero-content {
@@ -126,21 +163,35 @@
     }
 
         .hero-content p {
-            margin: 0 auto 20px;
+            margin: 0 auto 24px;
+            font-size: 0.95rem;
         }
 
-    .icon-wrapper {
-        width: 64px;
-        height: 64px;
+        /* STACK BUTTONS */
+        .hero-content .d-flex {
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .hero-content .btn {
+            width: 100%;
+            justify-content: center;
+        }
+
+    /* REMOVE EMPTY SPACE */
+    #3d-car {
+        display: none !important;
     }
 
     }
 </style>
 
+</style>
+
 <!-- Hero Section -->
 <section class="hero-section">
     <div class="container">
-        <div class="row align-items-center min-vh-100">
+        <div class="row align-items-center min-vh-50">
             <div class="col-lg-6 hero-content">
                 <h1 class="hero-title animate__animated animate__fadeInLeft">
                     Premium Cab Services
@@ -256,14 +307,7 @@
                                 <a asp-action="Book" class="btn btn-sm btn-primary">Book Now</a>
                             </div>
                         </div>
-                        <div class="card-body">
-                            <h5 class="card-title">@vehicle.Name</h5>
-                            <p class="card-text">@vehicle.Description</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <span class="h5 text-primary">₹@vehicle.PricePerHour<small>/hr</small></span>
-                                <a asp-action="Book" class="btn btn-sm btn-primary">Book Now</a>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
             }
